@@ -728,37 +728,154 @@ gettable_event(t,i) -- 采用索引访问本质上是一个类似这样的函数
 
 
 
+## Lua loop
+
+In many cases, we need to perform some regular repetitive operations, so we need to repeatedly execute certain statements in the program.
+
+A group of statements that are executed repeatedly is called a loop body. Whether it can continue to be repeated determines the termination condition of the loop.
+
+A loop structure is a process structure that repeatedly executes a certain program under certain conditions. The repeatedly executed program is called a loop body.
+
+A loop statement is composed of two parts: the loop body and the loop's termination condition.
+
+The Lua language provides the following loop processing methods:
+
+| 循环类型       | 描述                                                         |
+| :------------- | :----------------------------------------------------------- |
+| while 循环     | 在条件为 true 时，让程序重复地执行某些语句。执行语句前会先检查条件是否为 true。 |
+| for 循环       | 重复执行指定语句，重复次数可在 for 语句中控制。              |
+| repeat...until | 重复执行循环，直到 指定的条件为真时为止                      |
+| 循环嵌套       | 可以在循环内嵌套一个或多个循环语句（while do ... end;for ... do ... end;repeat ... until;） |
 
 
 
+### while loop
+
+While loop syntax in Lua programming language:
+
+```lua
+while(condition)
+do
+   statements
+end
+```
+
+![image-20231106202817196](picture/image-20231106202817196.png)
 
 
 
+In the above flow chart, we can see that when condition is false, the current loop will be skipped and the script will start executing the following statement.
+
+```lua
+-- 输出1~10
+num = 1
+while (num <= 20)
+do
+    print(num)
+    num = num + 1
+end
+```
 
 
 
+result:
+
+```shell
+$ lua 1lua_while.lua 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+```
 
 
 
+### for loop
+
+The for loop statement in the Lua programming language can repeatedly execute the specified statement, and the number of repetitions can be controlled in the for statement.
+
+There are two major categories of for statements in the Lua programming language:
+
+- numerical for loop
+
+```lua
+for var=exp1,exp2,exp3 do  
+    <执行体>  
+end  
+```
+
+```lua
+-- 输出1~10
+for num = 1, 10, 1 do
+    print(num)
+end
+```
 
 
 
+result:
+
+```shell
+$ lua 2for_numerical.lua 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+```
 
 
 
+- Generic for loop
+
+```lua
+--打印数组a的所有值  
+a = {"one", "two", "three"}
+for i, v in ipairs(a) do
+    print(i, v)
+end 
+```
+
+```lua
+a = {"apple", "banana", "orange"}
+
+for i, val in ipairs(a) do
+    print(i, val)
+
+end
+```
 
 
 
+result:
 
-
-
-
-
-
-
-
-
-
+```shell
+$ lua 3for_Generic.lua 
+1	apple
+2	banana
+3	orange
+```
 
 
 
