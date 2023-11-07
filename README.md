@@ -879,31 +879,97 @@ $ lua 3for_Generic.lua
 
 
 
+### repeat...until loop
+
+Repeat...until loop syntax format in Lua programming language:
+
+```lua
+repeat
+   statements
+until( condition )
+```
 
 
 
+We notice that the loop condition judgment statement (condition) is at the end of the loop body, so the loop body will be executed once before the condition is judged.
+
+If the conditional statement (condition) is false, the loop will restart execution and will not stop execution until the conditional judgment statement (condition) is true.
+
+The Lua repeat...until loop flow chart is as follows:
+
+![image-20231107205932112](picture/image-20231107205932112.png)
 
 
 
+```lua
+a = 1
+
+repeat
+    print(a)
+    a = a + 1
+until (a > 10)
+```
 
 
 
+result:
+
+```shell
+$ lua 4repeat_until.lua 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+```
 
 
 
+### Nested loops
 
+The syntax format of nested **for** loop in Lua programming language:
 
+```lua
+for init,max/min value, increment
+do
+   for init,max/min value, increment
+   do
+      statements
+   end
+   statements
+end
+```
 
+The syntax format of **while** loop nesting in Lua programming language:
 
+```lua
+while(condition)
+do
+   while(condition)
+   do
+      statements
+   end
+   statements
+end
+```
 
+The syntax format of **repeat...until** loop nesting in Lua programming language:
 
+```lua
+repeat
+   statements
+   repeat
+      statements
+   until( condition )
+until( condition )
+```
 
-
-
-
-
-
-
+In addition to the above same type of loop nesting, we can also use different loop types to nest, such as nesting while loops in the for loop body.
 
 
 
