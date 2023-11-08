@@ -971,6 +971,610 @@ until( condition )
 
 In addition to the above same type of loop nesting, we can also use different loop types to nest, such as nesting while loops in the for loop body.
 
+```lua
+-- 输出1~20所有的奇数
+
+for i = 1, 20, 1 do
+    if (1 == i % 2)
+    then
+        print(i)
+    end
+    i = i + 1
+end
+```
+
+
+
+result:
+
+```shell
+$ lua 5nested_loops.lua 
+1
+3
+5
+7
+9
+11
+13
+15
+17
+19
+```
+
+
+
+### Loop control statement
+
+Loop control statements are used to control the flow of the program to realize various structural methods of the program.
+
+Lua supports the following loop control statements:
+
+| 控制语句   | 描述                                             |
+| :--------- | :----------------------------------------------- |
+| break 语句 | 退出当前循环或语句，并开始脚本执行紧接着的语句。 |
+| goto 语句  | 将程序的控制点转移到一个标签处。                 |
+
+The Lua programming language break statement is inserted into the loop body to exit the current loop or statement and start script execution of the following statement.
+
+If you use nested loops, the break statement will stop execution of the innermost loop and begin execution of the outer loop statements.
+
+The syntax format of break statement in Lua programming language:
+
+```lua
+break
+```
+
+![image-20231107230419941](picture/image-20231107230419941.png)
+
+
+
+The following example executes a while loop, outputs the value of a when variable a is less than 20, and terminates the loop when a is greater than 15:
+
+```lua
+--[[ 变量定义 --]]
+a = 10
+
+while (a < 20)
+do
+    print(a)
+    a = a + 1
+    if (a > 15)
+    then
+        break
+    end
+end
+```
+
+
+
+result:
+
+```shell
+$ lua 6break.lua 
+10
+11
+12
+13
+14
+15
+```
+
+
+
+The goto statement in the Lua language allows the control flow to be transferred unconditionally to the marked statement.
+
+```lua
+goto Label
+```
+
+The format of Label is:
+
+```lua
+:: Label ::
+```
+
+
+
+## Lua Process Control
+
+Lua programming language flow control statements are set by programmatically setting one or more conditional statements. Execute specified program code when the condition is true, and execute other specified code when the condition is false.
+
+The following is a typical process control flow chart:
+
+![image-20231108065241780](picture/image-20231108065241780.png)
+
+The result of the conditional expression of the control structure can be any value. Lua considers false and nil to be false, and true and non-nil to be true.
+
+Note that 0 is true in Lua:
+
+```lua
+if (0)
+then
+    print("0 is ture")
+end
+```
+
+
+
+result:
+
+```shell
+$ lua 1if0.lua 
+0 is ture
+```
+
+
+
+Lua provides the following control structure statements:
+
+| 语句           | 描述                                                         |
+| :------------- | :----------------------------------------------------------- |
+| if 语句        | **if 语句** 由一个布尔表达式作为条件判断，其后紧跟其他语句组成。 |
+| if...else 语句 | **if 语句** 可以与 **else 语句**搭配使用, 在 if 条件表达式为 false 时执行 else 语句代码。 |
+| if 嵌套语句    | 你可以在**if** 或 **else if**中使用一个或多个 **if** 或 **else if** 语句 。 |
+
+Lua if statement consists of a Boolean expression as a conditional judgment, followed by other statements.
+
+The syntax format of Lua if statement is as follows:
+
+```lua
+if(布尔表达式)
+then
+   --[ 在布尔表达式为 true 时执行的语句 --]
+end
+```
+
+When the Boolean expression is true, the code block in the if will be executed. When the Boolean expression is false, the code immediately following the if statement end will be executed.
+
+Lua considers false and nil to be false, and true and non-nil to be true. Note that 0 is true in Lua.
+
+![image-20231108065929904](picture/image-20231108065929904.png)
+
+The following example is used to determine whether the value of variable a is less than 20:
+
+```lua
+a = 10
+
+if (a < 20)
+then
+    print("a < 20")
+end
+
+print(a)
+```
+
+
+
+result:
+
+```shell
+$ lua 2if.lua 
+a < 20
+10
+```
+
+
+
+The Lua if statement can be used in conjunction with the else statement, and the else statement code block is executed when the if conditional expression is false.
+
+The syntax format of Lua if...else statement is as follows:
+
+```lua
+if(布尔表达式)
+then
+   --[ 布尔表达式为 true 时执行该语句块 --]
+else
+   --[ 布尔表达式为 false 时执行该语句块 --]
+end
+```
+
+The code block in if will be executed when the Boolean expression is true, and the code block in else will be executed when the Boolean expression is false.
+
+Lua considers false and nil to be false, and true and non-nil to be true. Note that 0 is true in Lua.
+
+The if statement flow chart is as follows:
+
+![image-20231108071523258](picture/image-20231108071523258.png)
+
+The following example is used to determine the value of variable a:
+
+```lua
+a = 10
+
+if (a < 20)
+then
+    print("a < 20")
+else
+    print("a > 20")
+end
+
+print(a)
+```
+
+
+
+result:
+
+```shell
+l$ lua 3if_else.lua 
+a < 20
+10
+```
+
+
+
+The Lua if statement can be used in conjunction with the elseif...else statement. When the if conditional expression is false, the elseif...else statement code block is executed to detect multiple conditional statements.
+
+The syntax format of Lua if...elseif...else statement is as follows:
+
+```lua
+if( 布尔表达式 1)
+then
+   --[ 在布尔表达式 1 为 true 时执行该语句块 --]
+
+elseif( 布尔表达式 2)
+then
+   --[ 在布尔表达式 2 为 true 时执行该语句块 --]
+
+elseif( 布尔表达式 3)
+then
+   --[ 在布尔表达式 3 为 true 时执行该语句块 --]
+else 
+   --[ 如果以上布尔表达式都不为 true 则执行该语句块 --]
+end
+```
+
+```lua
+age = 24
+
+if (age < 18)
+then
+    print("未成年人")
+elseif (age >= 18 and age < 40)
+then
+    print("中年人")
+else
+    print("老年人")
+end
+```
+
+
+
+result:
+
+```shell
+$ lua 4elseif.lua 
+中年人
+```
+
+
+
+Lua if statements allow nesting, which means you can insert other if or else if statements inside an if or else if statement.
+
+The syntax format of Lua if nested statement is as follows:
+
+````lua
+if( 布尔表达式 1)
+then
+   --[ 布尔表达式 1 为 true 时执行该语句块 --]
+   if(布尔表达式 2)
+   then
+      --[ 布尔表达式 2 为 true 时执行该语句块 --]
+   end
+end
+````
+
+```lua
+money = 66
+
+if (money > 50)
+then
+    if (money > 100)
+    then
+        print("vary rich")
+    end
+    
+    print("rich")
+end
+```
+
+
+
+result:
+
+```shell
+$ lua 5if_nested.lua 
+rich
+```
+
+
+
+## Lua Function
+
+In Lua, functions are the main way to abstract statements and expressions. It can be used to handle some special tasks and to calculate some values.
+
+Lua provides many built-in functions that you can easily call in your program. For example, the print() function can print the passed parameters on the console.
+
+Lua functions have two main uses:
+
+1. Complete the specified task, in this case the function is used as a calling statement;
+2. Computes and returns a value, in which case the function is used as an expression in an assignment statement.
+
+function definition
+The Lua programming language function definition format is as follows:
+
+```lua
+optional_function_scope function function_name( argument1, argument2, argument3..., argumentn)
+    function_body
+    return result_params_comma_separated
+end
+```
+
+parse：
+
+- **optional_function_scope:** This parameter is optional and specifies whether the function is a global function or a local function. If this parameter is not set, it defaults to a global function. If you need to set the function to a local function, you need to use the keyword **local**.
+- **function_name:** Specify the function name.
+- **argument1, argument2, argument3..., argumentn:** Function parameters, multiple parameters are separated by commas, and the function can also have no parameters.
+- **function_body:** Function body, the block of code statements that need to be executed in the function.
+- **result_params_comma_separated:**Function return value, Lua language function can return multiple values, each value is separated by commas.
+
+Example
+The following example defines the function max(), with parameters num1, num2, used to compare the size of two values and return the maximum value:
+
+```lua
+function max(num1, num2)
+
+    if (num1 > num2)
+    then
+        retval = num1
+    else
+        retval = num2
+
+    end
+    return retval
+    
+end
+
+print("max = ", max(10, 20))
+print("max = ", max(6, 2))
+```
+
+
+
+result:
+
+```shell
+$ lua 1Compare.lua 
+max = 	20
+max = 	6
+```
+
+
+
+In Lua, we can pass functions as parameters to functions, as shown in the following example:
+
+```lua
+function my_print(val)
+    print("value=", val)
+
+end
+
+function add(num1, num2, functionprint)
+    functionprint(num1 + num2)
+
+end
+
+add(10, 6, my_print)
+```
+
+
+
+result:
+
+```shell
+$ lua 2fun_as_param.lua 
+value=	16
+```
+
+
+
+### Multiple return values
+
+In Lua functions, multiple values can be returned by listing the list of values to be returned after return, such as:
+
+```lua
+string = {"father", "mother", "son"}
+
+function find_ht(str)
+    i = 1
+    while (str[i] ~= nil)
+    do
+        i = i + 1
+    end
+
+    return str[1], str[i - 1]
+
+end
+
+
+head, tail = find_ht(string)
+print(head, tail)
+```
+
+
+
+result:
+
+```shell
+$ lua 3multi_return.lua 
+father	son
+```
+
+
+
+### variable parameter
+
+Lua functions can accept a variable number of parameters. Similar to the C language, three dots... are used in the function parameter list to indicate that the function has variable parameters.
+
+```lua
+function add(...)  
+local s = 0  
+  for i, v in ipairs{...} do   --> {...} 表示一个由所有变长参数构成的数组  
+    s = s + v  
+  end  
+  return s  
+end  
+print(add(3,4,5,6,7))  --->25
+```
+
+
+
+We can assign variadic parameters to a variable.
+
+For example, let's calculate the average of several numbers:
+
+```lua
+function average(...)
+    sum = 0
+    local arg = {...}
+
+    for i, v in ipairs(arg) do
+        sum = sum + v
+    end
+    
+
+    print("总共传入" .. #arg .. "个数")
+    return sum / #arg
+
+end
+
+print("平均值:", average(10,5,3,7,9))
+```
+
+
+
+result:
+
+```shell
+$ lua 5average.lua 
+总共传入5个数
+平均值:	6.8
+```
+
+
+
+We can also get the number of variable parameters through select("#",...):
+
+```lua
+function average(...)
+    sum = 0
+    local arg = {...}
+
+    for i, v in ipairs(arg) do
+        sum = sum + v
+    end
+    
+
+    print("总共传入" .. #arg .. "个数")
+    return sum / select("#", ...)
+
+end
+
+print("平均值:", average(10,5,3,7,9))
+```
+
+
+
+result:
+
+```shell
+$ lua 5average.lua 
+总共传入5个数
+平均值:	6.8
+```
+
+
+
+Sometimes we may need several fixed parameters plus variable parameters. The fixed parameters must be placed before the variable parameters:
+
+
+
+
+
+
+
+
+
+
+
+Usually when traversing variable-length parameters, you only need to use {...}. However, the variable-length parameters may contain some nil, so you can use the select function to access the variable-length parameters: select('#', ...) or select(n ,…)
+
+- select('#', …) returns the length of the variable argument.
+- select(n, …) is used to return a list of all parameters starting from the starting point n to the ending position.
+
+When calling select, a fixed argument selector (selector switch) and a series of variable-length parameters must be passed in. If selector is a number n, then select returns a list of all parameters in the parameter list starting from index n to the end position, otherwise it can only be the string #, so select returns the total number of variable-length parameters.
+
+```lua
+function f(...)
+    a = select(3, ...)
+    print(a)
+    print(select(3, ...))
+
+end
+
+f(1,2,3,4,5)
+```
+
+
+
+result:
+
+```shell
+$ lua 8selfunc.lua 
+3
+3	4	5
+```
+
+
+
+example:
+
+```lua
+function foo(...)
+    for i = 1, select("#", ...), 1
+    do 
+        local arg = select(i, ...)
+        print("arg", arg)
+    end
+end
+
+foo(1, 2, 3, 4)
+```
+
+
+
+result:
+
+```shell
+$ lua 9example.lua 
+arg	1
+arg	2
+arg	3
+arg	4
+```
+
+
+
+
+
+## Lua Operator
+
+
+
+
+
+
+
 
 
 
