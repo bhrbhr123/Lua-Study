@@ -1650,6 +1650,166 @@ or
 
 
 
+## Lua String
+
+A string or string (String) is a string of characters composed of numbers, letters, and underscores.
+
+In Lua, string is a basic data type used to store text data.
+
+Strings in Lua can contain any characters, including letters, numbers, symbols, spaces, and other special characters.
+
+Strings in Lua language can be represented in the following three ways:
+
+- A string of characters between single quotes.
+
+```lua
+str = 'This is a string'
+str = "This is also a string"
+```
+
+
+
+- A string of characters between double quotes.
+
+```lua
+local str = "Hello"
+str = str .. " World"
+print(str)
+```
+
+
+
+- A string of characters between [[ and ]].
+
+```lua
+local str = [[
+    sldjjfhsjlf
+    skldjhfgasio
+    lisdghiso
+]]
+
+print(str)
+```
+
+
+
+### String length calculation
+
+- `string.len`和`utf8.len`两个函数都可以计算字符串长度
+- 如果字符串中出现中文，建议用`utf8.len`函数
+
+```lua
+-- 计算字符串的长度
+
+str1 = 'ajhfg afas fjsg dfvga'
+str2 = '北京欢迎您'
+
+print(string.len(str1))
+print(utf8.len(str1))
+
+print(string.len(str2))
+print(utf8.len(str2))
+```
+
+
+
+result:
+
+```shell
+$ lua 4string_length.lua 
+21
+21
+15
+5
+```
+
+
+
+Escape characters are used to represent characters that cannot be displayed directly, such as the back key, enter key, etc. For example, you can use \ when converting double quotes in a string.
+
+All escape characters and their corresponding meanings:
+
+| 转义字符 | 意义                                | ASCII码值（十进制） |
+| -------- | ----------------------------------- | ------------------- |
+| \a       | 响铃(BEL)                           | 007                 |
+| \b       | 退格(BS) ，将当前位置移到前一列     | 008                 |
+| \f       | 换页(FF)，将当前位置移到下页开头    | 012                 |
+| \n       | 换行(LF) ，将当前位置移到下一行开头 | 010                 |
+| \r       | 回车(CR) ，将当前位置移到本行开头   | 013                 |
+| \t       | 水平制表(HT) （跳到下一个TAB位置）  | 009                 |
+| \v       | 垂直制表(VT)                        | 011                 |
+| \\       | 代表一个反斜线字符''\'              | 092                 |
+| \'       | 代表一个单引号（撇号）字符          | 039                 |
+| \"       | 代表一个双引号字符                  | 034                 |
+| \0       | 空字符(NULL)                        | 000                 |
+| \ddd     | 1到3位八进制数所代表的任意字符      | 三位八进制          |
+| \xhh     | 1到2位十六进制所代表的任意字符      | 二位十六进制        |
+
+
+
+### String operations
+
+Lua provides many methods to support string operations:
+
+
+
+```lua
+1 string.upper(argument)
+Convert strings to all uppercase
+
+2 string.lower(argument)
+Convert all strings to lowercase
+
+3 string.gsub(mainString,findString,replaceString,num)
+replace in string
+
+4 string.find(str,substr,[init,[plain]])
+Searches for the specified content substr in a specified target string str. If a matching substring is found, the starting index and ending index of the substring will be returned. If it does not exist, nil will be returned.
+
+init specifies the starting position of the search, which defaults to 1. It can be a negative number, indicating the number of characters counting from the back to the front.
+
+plain indicates whether to use simple mode, the default is false, true only performs simple search for substrings, false indicates using regular pattern matching.
+        
+5 string.reverse(arg)
+String reverse
+        
+6 string.format(...)
+Returns a printf-like formatted string
+        
+7         
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
