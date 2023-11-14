@@ -1776,8 +1776,24 @@ String reverse
 6 string.format(...)
 Returns a printf-like formatted string
         
-7         
-
+7 string.char(arg) and string.byte(arg[,int])        
+char converts integer numbers into characters and connects them, byte converts characters into integer values (a certain character can be specified, the default is the first character).
+        
+8 string.len(arg)
+Calculate string length
+        
+9 string.rep(string,n)        
+Returns n copies of the string string        
+             
+10 ..      
+Concatenate two strings
+        
+11 string.gmatch(str,pattern)        
+Returns an iterator function. Each time this function is called, it returns the next substring found in the string str that matches the description of pattern. If the string described by the parameter pattern is not found, the iteration function returns nil.        
+                    
+12 string.match(str, pattern, init)
+string.match() only searches for the first match in the source string str. The init parameter is optional and specifies the starting point of the search process. The default is 1.
+On a successful pairing, the function returns all captures in the pairing expression; if no capture flag is set, the entire pairing string is returned. When there is no successful pairing, nil is returned.                    
 ```
 
 
